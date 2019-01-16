@@ -59,6 +59,7 @@ public class Game : MonoBehaviour {
     void DrawLevel()
     {
         levelNumber.text = level + "";
+        moves = 0;
         taskText.text = playground.task.GetText(level);
         succesModalWindow.SetActive(false);
         failModalWindow.SetActive(false);
@@ -88,7 +89,6 @@ public class Game : MonoBehaviour {
             allBranches.Add(branch);
         }
         crossbarImg.transform.SetAsLastSibling();
-        Debug.Log("all=" + allBranches.Count);
     }
 
     public RectTransform GetHelpBranchRect()
@@ -110,14 +110,19 @@ public class Game : MonoBehaviour {
         }
     }
 
-    public void ResetGame()
+    public void DestroyBranches()
     {
-        for(int i = 0; i < GetAllBranches().Count; i++)       
+        for (int i = 0; i < GetAllBranches().Count; i++)
         {
             GameObject brancha = GetAllBranches()[i];
             GetAllBranches()[i] = null;
             Destroy(brancha);
-        }      
+        }
+    }
+
+    public void ResetGame()
+    {
+        DestroyBranches();
         playground.ResetPlayerSolution();
         DrawLevel();
     }
@@ -183,7 +188,8 @@ public class Game : MonoBehaviour {
         {
             level++;
             succesModalWindow.SetActive(false);
-            ResetGame();
+            //ResetGame();  - hlupa chybaaaaaa
+            DestroyBranches();
             NewLevel();
         }
     }
@@ -288,15 +294,15 @@ public class Game : MonoBehaviour {
                 reverse[i] = playground[playground.Length - i - 1];
             }
             int solution = solver.CountSwaps(reverse, playground.Length);
-            Debug.Log(solution);
+            //Debug.Log(solution); - odkomentovat pre pocet rieseni :) 
             return solution;
         }
 
         public void SwitchIndexes(int i1, int i2)
         {
-            int val = this.playerSolutionList[i1];
-            this.playerSolutionList[i1] = this.playerSolutionList[i2];
-            this.playerSolutionList[i2] = val;
+            int val = playerSolutionList[i1];
+            playerSolutionList[i1] = playerSolutionList[i2];
+            playerSolutionList[i2] = val;
 
         }
     }
