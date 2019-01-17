@@ -44,7 +44,7 @@ public class Game : MonoBehaviour {
         new Task(8, 5),
         new Task(9, 6)
         };
-
+        moves = 0;
         helpBranchRect = (RectTransform)helpBranch.transform;
         helpBranch.SetActive(false);
         NewLevel();
@@ -117,9 +117,10 @@ public class Game : MonoBehaviour {
             GameObject brancha = GetAllBranches()[i];
             GetAllBranches()[i] = null;
             Destroy(brancha);
-        }      
-        playground.ResetPlayerSolution();
+        }
+        moves = 0;
         DrawLevel();
+        playground.ResetPlayerSolution();
     }
 
     public void ResetAfterFail()
@@ -182,9 +183,11 @@ public class Game : MonoBehaviour {
         if (level < 9)
         {
             level++;
+            moves = 0;
             succesModalWindow.SetActive(false);
             ResetGame();
             NewLevel();
+            DrawLevel();
         }
     }
 
