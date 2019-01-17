@@ -6,11 +6,8 @@ using UnityEngine.EventSystems;
 public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     Game game;
-    bool dragging;
     Vector3 originPosition;
     RectTransform thisRT;
-    int position = -1;
-    bool placed = false;
     int indexThis;
     float width;
     float height;
@@ -19,7 +16,6 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
     private void Start()
     {
         thisRT = (RectTransform)transform;
-        dragging = false;
         var canvas = GameObject.FindWithTag("Canvas");
         game = canvas.GetComponent<Game>();
         SetPosition(gameObject, transform.position);
@@ -42,7 +38,6 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
         height = helpBranchRect.rect.height;
         originPosition = gameObject.transform.position; 
         
-        dragging = true;
         transform.SetAsLastSibling();
         game.crossbarImg.transform.SetAsLastSibling();
         indexThis = (int)((gameObject.transform.position.x - helpBranchRect.transform.position.x) / (width + 10));
@@ -63,7 +58,6 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
         {
             return;
         }
-        int originIndex = (int)((originPosition.x - helpBranchRect.transform.position.x) / (width + 10));
         for (var i = 0; i < game.GetAllBranches().Count; i++)
         {
             GameObject branch = game.GetAllBranches()[i];
@@ -96,7 +90,6 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
                 }
             }
-            dragging = false;
         }
         transform.position =  originPosition;
 
