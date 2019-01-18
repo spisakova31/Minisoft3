@@ -37,12 +37,14 @@ public class Game : MonoBehaviour {
         new Task(1, 3),
         new Task(2, 4),
         new Task(3, 5),
-        new Task(4, 4),
-        new Task(5, 5),
-        new Task(6, 6),
-        new Task(7, 4),
-        new Task(8, 5),
-        new Task(9, 6)
+        new Task(4, 3),
+        new Task(5, 4),
+        new Task(6, 5),
+        new Task(7, 6),
+        new Task(8, 3),
+        new Task(9, 4),
+        new Task(10, 5),
+        new Task(11, 6)
         };
         moves = 0;
         helpBranchRect = (RectTransform)helpBranch.transform;
@@ -159,7 +161,7 @@ public class Game : MonoBehaviour {
         {
             succesModalWindow.SetActive(true);
             succesModalWindow.transform.SetAsLastSibling();
-            if(level == 9)
+            if(level == 11)
             {
                 nextTaskBtn.SetActive(false);
                 finalText.text = "Gratulujem! Vyriešil si všetky úlohy.";
@@ -184,7 +186,7 @@ public class Game : MonoBehaviour {
 
     public void NextLevel()
     {
-        if (level < 9)
+        if (level < 11)
         {
             level++;
             moves = 0;
@@ -215,7 +217,7 @@ public class Game : MonoBehaviour {
                 return "Usporiadaj brvná podľa počtu lístkov tak, aby pri bobrovi bolo brvno s najväčším počtom lístkov. Vymieňať môžeš iba brvná ležiace vedľa seba. Všímaj si počet výmen. ";
 
             }
-            else if(level < 7)
+            else if(level < 8)
             {
                 return "Na aký najmenší počet výmen sa dajú postupne usporiadať brvná tak, aby pri bobrovi bolo brvno s najväčším počtom lístkov? Pomôž si usporiadavaním vetvičiek a riešenie napíš.";
             }

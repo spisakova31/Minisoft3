@@ -29,7 +29,7 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (game.GetLevel() > 6)
+        if (game.GetLevel() > 7)
         {
             return;
         }
@@ -45,7 +45,7 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (game.GetLevel() > 6)
+        if (game.GetLevel() > 7)
         {
             return;
         }
@@ -54,7 +54,7 @@ public class DragAndDropBranch : MonoBehaviour, IDragHandler, IBeginDragHandler,
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (game.GetLevel() > 6)
+        if (game.GetLevel() > 7)
         {
             return;
         }
